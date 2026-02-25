@@ -36,6 +36,7 @@ public class ObsOptionsPanel extends StackPanel {
 		info.add(new ThemedTextArea(styleManager, NinjabrainBotOverlayImageWriter.OBS_OVERLAY.getAbsolutePath()));
 		add(info);
 		add(new CheckboxPanel(styleManager, I18n.get("settings.overlay_enable"), preferences.useOverlay));
+        add(new CheckboxPanel(styleManager, I18n.get("settings.overlay_hide_idle"), preferences.overlayHideWhenIdle));
 		add(new CheckboxPanel(styleManager, I18n.get("settings.overlay_hide_locked"), preferences.overlayHideWhenLocked));
 		add(new CheckboxPanel(styleManager, I18n.get("settings.overlay_auto_hide"), preferences.overlayAutoHide));
 		overlayResetDelay = new FloatPreferencePanel(styleManager, I18n.get("settings.overlay_auto_hide_duration"), preferences.overlayHideDelay);

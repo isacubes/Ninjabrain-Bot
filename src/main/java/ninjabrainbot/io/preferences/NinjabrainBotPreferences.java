@@ -60,6 +60,7 @@ public class NinjabrainBotPreferences {
 	public final BooleanPreference saveState;
 	public final BooleanPreference enableHttpServer;
 	public final BooleanPreference overlayAutoHide;
+	public final BooleanPreference overlayHideWhenIdle;
 	public final BooleanPreference overlayHideWhenLocked;
 	public final BooleanPreference allAdvancements;
 	public final BooleanPreference oneDotTwentyPlusAA;
@@ -129,6 +130,7 @@ public class NinjabrainBotPreferences {
 		saveState = new BooleanPreference("save_state", true, source);
 		enableHttpServer = new BooleanPreference("enable_http_server", false, source);
 		overlayAutoHide = new BooleanPreference("overlay_auto_hide", false, source);
+        overlayHideWhenIdle = new BooleanPreference("overlay_idle_hide", true, source);
 		overlayHideWhenLocked = new BooleanPreference("overlay_lock_hide", false, source);
 		allAdvancements = new BooleanPreference("all_advancements", false, source);
 		oneDotTwentyPlusAA = new BooleanPreference("one_dot_twenty_plus_aa", false, source);

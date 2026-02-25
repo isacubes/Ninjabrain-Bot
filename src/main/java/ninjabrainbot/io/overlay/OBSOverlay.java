@@ -57,6 +57,7 @@ public class OBSOverlay implements IDisposable {
 	private void setupSettingsSubscriptions() {
 		disposeHandler.add(preferences.overlayHideDelay.whenModified().subscribeEDT(this::markShouldUpdate));
 		disposeHandler.add(preferences.overlayAutoHide.whenModified().subscribeEDT(this::markShouldUpdate));
+		disposeHandler.add(preferences.overlayHideWhenIdle.whenModified().subscribeEDT(this::markShouldUpdate));
 		disposeHandler.add(preferences.overlayHideWhenLocked.whenModified().subscribeEDT(this::markShouldUpdate));
 		disposeHandler.add(preferences.useOverlay.whenModified().subscribeEDT(this::setOverlayEnabled));
 
@@ -117,8 +118,9 @@ public class OBSOverlay implements IDisposable {
 	private void drawAndWriteToFile() {
 		if (preferences.useOverlay.get()) {
 			BufferedImage img = new BufferedImage(ninjabrainBotFrame.getWidth(), ninjabrainBotFrame.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            boolean hideBecauseIdle = preferences.overlayHideWhenIdle.get() && ninjabrainBotFrame.isIdle();
 			boolean hideBecauseLocked = preferences.overlayHideWhenLocked.get() && calculatorLocked.get();
-			if (!ninjabrainBotFrame.isIdle() && !hideBecauseLocked) {
+			if (!(hideBecauseIdle || hideBecauseLocked)) {
 				ninjabrainBotFrame.paint(img.createGraphics());
 				resetClearTimer();
 			}
